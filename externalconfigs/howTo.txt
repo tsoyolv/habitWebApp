@@ -1,0 +1,24 @@
+1. Add to maven runner 
+-Dmaven.multiModuleProjectDirectory=$M2_HOME
+Idea - Build, Execution, Deployment->Build Tools->Maven->Runner
+
+2. Add to maven settings.xml tags (user/.m2/settings.xml or $M2_HOME/conf/settings.xml)
+<servers>
+	<server>
+		<id>TomcatServer</id>
+		<username>admin</username>
+		<password>admin</password>
+	</server>
+</servers>
+
+3. Add to tomcat tomcat-users.xml tags (tomcatHome/conf/tomcat-users.xml)
+<role rolename="manager"/>
+<role rolename="admin"/>
+<role rolename="manager-gui"/>
+<role rolename="manager-script"/>
+<user username="admin" password="admin" roles="admin,manager,manager-gui,manager-script"/>
+
+4. Start tomcat.
+5. run mvn tomcat7:deploy (mvn tomcat7:redeploy) in project root
+
+http://blog.devcanvas.org/deploy-a-web-application-from-the-command-line-by-using-tomcat-maven-plugin/#lightbox/7/
