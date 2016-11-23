@@ -12,5 +12,6 @@ public class HelloWorld extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.getOutputStream().print("Sevlet");
+        //req.getSession(false)
     }
 }
