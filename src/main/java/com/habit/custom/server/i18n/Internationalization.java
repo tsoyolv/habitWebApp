@@ -14,13 +14,19 @@ import java.util.concurrent.ConcurrentMap;
 public class Internationalization {
 
     private ConcurrentMap<String, String> cache = new ConcurrentHashMap<>();
-    private static final int CACHE_SIZE = 100;
+    private static final int CACHE_SIZE = 1000;
 
     public void refreshResources() {
         cache.clear();
+        fillCache();
+    }
+
+    private void fillCache() {
+
     }
 
     public synchronized String getResource(String key) {
+        if (key == null) { return "";}
         if (cache.get(key) != null) {return cache.get(key);}
         if (cache.size() > CACHE_SIZE) {
             cache.clear();

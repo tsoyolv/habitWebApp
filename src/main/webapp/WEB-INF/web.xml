@@ -9,6 +9,16 @@
          version="4.0"
          metadata-complete="false">
 
+    <servlet>
+        <servlet-name>I19nServlet</servlet-name>
+        <servlet-class>com.habit.custom.server.servlet.InternationalizationServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>I19nServlet</servlet-name>
+        <url-pattern>/getLocalizedMessage</url-pattern>
+    </servlet-mapping>
+
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
