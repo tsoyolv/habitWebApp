@@ -19,7 +19,9 @@ public class InternationalizationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setCharacterEncoding(Internationalization.getCharsetName());
         String parameter = req.getParameter(MESSAGE_KEY);
-        resp.getOutputStream().print(Internationalization.getInstance().getResource(parameter));
+        String resource = Internationalization.getInstance().getResource(parameter);
+        resp.getWriter().print(resource);
     }
 }

@@ -13,30 +13,15 @@ import java.util.concurrent.ConcurrentMap;
 // Singleton
 public class Internationalization {
 
-    private ConcurrentMap<String, String> cache = new ConcurrentHashMap<>();
     private static final int CACHE_SIZE = 1000;
+    private static final String CHARSET_NAME = "UTF-8";
+
     private Locale locale;
+    private ConcurrentMap<String, String> cache = new ConcurrentHashMap<>();
 
     public void refreshResources() {
         cache.clear();
         fillCache();
-    }
-
-    private void fillCache() {
-        for (int i = 0; i < CACHE_SIZE; i++) {
-            final String PATH = "custom/l10n/" + this.locale.getFileName() + ".txt";
-            final String SPLITTER = ":";
-            InputStream resourceAsStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(PATH);
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    String[] split = line.split(SPLITTER);
-                    cache.put(split[0], split[1]);
-                }
-
-            } catch (IOException x) {
-            }
-        }
     }
 
     public synchronized String getResource(String key) {
@@ -51,26 +36,20 @@ public class Internationalization {
     }
 
     public synchronized String getResource(String key, Locale locale) {
-        if (key == null) { return "";}
         if (locale != null) {
             if (!locale.equals(this.locale)) {
-
+                this.locale = locale;
+                return getResourceFromFile(key);
             }
         }
-        if (cache.get(key) != null) {return cache.get(key);}
-        if (cache.size() > CACHE_SIZE) {
-            cache.clear();
-        }
-        String resourceFromFile = getResourceFromFile(key);
-        cache.put(key, resourceFromFile);
-        return resourceFromFile;
+        return getResource(key);
     }
 
     private String getResourceFromFile(String key) {
         final String PATH = "custom/l10n/" + this.locale.getFileName() + ".txt";
         final String SPLITTER = ":";
         InputStream resourceAsStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(PATH);
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream, CHARSET_NAME))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] split = line.split(SPLITTER);
@@ -85,20 +64,22 @@ public class Internationalization {
         return "";
     }
 
-    private static Internationalization instance;
-    private Internationalization (Locale locale) {
-        this.locale = locale;
-    }
+    private void fillCache() {
+        for (int i = 0; i < CACHE_SIZE; i++) {
+            final String PATH = "custom/l10n/" + this.locale.getFileName() + ".txt";
+            final String SPLITTER = ":";
+            InputStream resourceAsStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(PATH);
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream, CHARSET_NAME))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] split = line.split(SPLITTER);
+                    cache.put(split[0], split[1]);
+                }
 
-    public static synchronized Internationalization getInstance() {
-        return getInstance(Locale.RU);
-    }
-
-    public static synchronized Internationalization getInstance(Locale locale) {
-        if (instance == null) {
-            instance = new Internationalization(locale);
+            } catch (IOException x) {
+                return;
+            }
         }
-        return instance;
     }
 
     private enum Locale {
@@ -114,5 +95,26 @@ public class Internationalization {
             return fileName;
         }
 
+    }
+
+    public static String getCharsetName() {
+        return CHARSET_NAME;
+    }
+
+    private static Internationalization instance;
+    private Internationalization (Locale locale) {
+        this.locale = locale;
+        refreshResources();
+    }
+
+    public static synchronized Internationalization getInstance() {
+        return getInstance(Locale.RU);
+    }
+
+    public static synchronized Internationalization getInstance(Locale locale) {
+        if (instance == null) {
+            instance = new Internationalization(locale);
+        }
+        return instance;
     }
 }

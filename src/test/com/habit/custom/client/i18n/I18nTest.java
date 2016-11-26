@@ -18,7 +18,8 @@ public class I18nTest extends TestCase {
     @Test
     public void testSendGet() throws Exception {
         final String USER_AGENT = "Mozilla/5.0";
-        String url = "/getLocalizedMessage?messagekey=1";
+        final int messageKey = 2;
+        String url = "http://localhost:8082/getLocalizedMessage?messagekey=" + messageKey;
 
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
