@@ -13,6 +13,7 @@ public class I18n {
 
     private static final String SERVER_URL = "http://localhost:8082/";
     private static final String USER_AGENT = "Mozilla/5.0";
+    private static final String CHARACTER_ENCODING = "UTF-8";
 
     public static String getResource(String key) {
         String url = SERVER_URL + "getLocalizedMessage?messagekey=" + key;
@@ -20,10 +21,10 @@ public class I18n {
         try {
             obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-            // optional default is GET
+            // optional. default is GET
             //con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", USER_AGENT);
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), CHARACTER_ENCODING));
             String inputLine;
             StringBuilder response = new StringBuilder();
             while ((inputLine = in.readLine()) != null) {

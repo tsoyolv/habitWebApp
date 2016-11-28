@@ -1,0 +1,6 @@
+1:Hello
+2:Incredible
+3:Must
+4:Phone number or email
+5:Password
+6:Sign in

@@ -1,9 +1,6 @@
 package com.habit.custom.server.i18n;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -15,6 +12,10 @@ public class Internationalization {
 
     private static final int CACHE_SIZE = 1000;
     private static final String CHARSET_NAME = "UTF-8";
+
+    private static final String SPLITTER = ":";
+    private static final String LOCALE_ROOT_PATH = "custom/l10n/";
+    private static final String LOCALE_PATH_FILES_PATH = LOCALE_ROOT_PATH + "files/";
 
     private Locale locale;
     private ConcurrentMap<String, String> cache = new ConcurrentHashMap<>();
@@ -46,9 +47,8 @@ public class Internationalization {
     }
 
     private String getResourceFromFile(String key) {
-        final String PATH = "custom/l10n/" + this.locale.getFileName() + ".txt";
-        final String SPLITTER = ":";
-        InputStream resourceAsStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(PATH);
+        final String localePath = LOCALE_PATH_FILES_PATH + this.locale.getFileName() + ".txt";
+        InputStream resourceAsStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(localePath);
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream, CHARSET_NAME))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -66,9 +66,8 @@ public class Internationalization {
 
     private void fillCache() {
         for (int i = 0; i < CACHE_SIZE; i++) {
-            final String PATH = "custom/l10n/" + this.locale.getFileName() + ".txt";
-            final String SPLITTER = ":";
-            InputStream resourceAsStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(PATH);
+            final String localPath = LOCALE_PATH_FILES_PATH + this.locale.getFileName() + ".txt";
+            InputStream resourceAsStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(localPath);
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream, CHARSET_NAME))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
@@ -108,13 +107,30 @@ public class Internationalization {
     }
 
     public static synchronized Internationalization getInstance() {
-        return getInstance(Locale.RU);
-    }
-
-    public static synchronized Internationalization getInstance(Locale locale) {
         if (instance == null) {
-            instance = new Internationalization(locale);
+            final String confPath = LOCALE_ROOT_PATH + "configuration.txt";
+            InputStream resourceAsStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(confPath);
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream, CHARSET_NAME))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] split = line.split(SPLITTER);
+                    if (split[0].equals("default")) {
+                        for (Locale loc : Locale.values()) {
+                            if (loc.getFileName().equals(split[1])) {
+                                return instance = new Internationalization(loc);
+                            }
+                        }
+                    }
+                }
+            } catch (IOException e) {
+                return instance = new Internationalization(Locale.RU);
+            }
         }
         return instance;
+    }
+
+    public void _devRefreshLocale() {
+        instance = null;
+        getInstance();
     }
 }
