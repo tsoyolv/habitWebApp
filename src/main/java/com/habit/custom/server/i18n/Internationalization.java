@@ -1,13 +1,19 @@
 package com.habit.custom.server.i18n;
 
-import java.io.*;
+import com.habit.custom.knowledges.AntiPattern;
+import com.habit.custom.knowledges.Pattern;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
  * OLTS on 20.11.2016.
  */
-// Singleton
+@Pattern(type = "GOF", value = "Singleton")
 public class Internationalization {
 
     private static final int CACHE_SIZE = 1000;
@@ -46,6 +52,7 @@ public class Internationalization {
         return getResource(key);
     }
 
+    @AntiPattern("Copy-paste")
     private String getResourceFromFile(String key) {
         final String localePath = LOCALE_PATH_FILES_PATH + this.locale.getFileName() + ".txt";
         InputStream resourceAsStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(localePath);
