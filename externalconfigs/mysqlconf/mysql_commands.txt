@@ -1,5 +1,5 @@
 http://www.mysql.ru/docs/man/Tutorial.html
-mysql> CREATE DATABASE users;
+mysql> CREATE DATABASE habitdb;
 mysql> show databases;
 mysql> SHOW TABLES;
 mysql> create table accounts (id NUMERIC(20), name VARCHAR(200));
@@ -15,3 +15,10 @@ mysql> INSERT INTO books (id, `name`, author)
           VALUES (1, 'Effective Java', 'Joshua Bloch');
       INSERT INTO books (id, `name`, author)
           VALUES (2, 'Java Concurrency in Practice', 'Brian Goetz');
+==========================================================================
+1. CREATE DATABASE habitdb;
+2. exec habit.sql
+3. exec users.sql
+4. insert initial data
+INSERT INTO habitdb.habit ( `name`, score)
+          VALUES ( 'firsthab', 10);

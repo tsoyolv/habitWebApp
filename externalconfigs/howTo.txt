@@ -22,3 +22,6 @@ Idea - Build, Execution, Deployment->Build Tools->Maven->Runner
 5. run mvn tomcat7:deploy (mvn tomcat7:redeploy) in project root
 
 http://blog.devcanvas.org/deploy-a-web-application-from-the-command-line-by-using-tomcat-maven-plugin/#lightbox/7/
+
+for db (mysql workbench)
+https://dev.mysql.com/doc/workbench/en/wb-getting-started-tutorial-creating-a-model.html

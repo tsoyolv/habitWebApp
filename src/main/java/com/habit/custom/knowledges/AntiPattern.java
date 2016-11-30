@@ -8,6 +8,8 @@ import java.lang.annotation.Target;
 /**
  * OLTS on 29.11.2016.
  */
+
+// todo it is not working
 @Target({ElementType.CONSTRUCTOR, ElementType.FIELD, ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AntiPattern {
