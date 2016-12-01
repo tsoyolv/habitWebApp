@@ -1,0 +1,7 @@
+INSERT INTO `habitdb`.`habit` (`name`, `score`) VALUES ('get up at 6', '20');
+
+INSERT INTO `habitdb`.`habit` (`name`, `score`) VALUES ('english first 1 hour', '10');
+
+INSERT INTO `habitdb`.`user` (`first_name`, `second_name`, `last_name`) VALUES ('Oleg', 'Tsoy', 'Vyacheslavovich');
+
+INSERT INTO `habitdb`.`habit_to_user` (`habit_idhabit`, `user_iduser`) VALUES ('2', '1');

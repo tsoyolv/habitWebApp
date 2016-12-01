@@ -24,4 +24,7 @@ Idea - Build, Execution, Deployment->Build Tools->Maven->Runner
 http://blog.devcanvas.org/deploy-a-web-application-from-the-command-line-by-using-tomcat-maven-plugin/#lightbox/7/
 
 for db (mysql workbench)
+create model and db
 https://dev.mysql.com/doc/workbench/en/wb-getting-started-tutorial-creating-a-model.html
+insert data in db
+https://dev.mysql.com/doc/workbench/en/wb-getting-started-tutorial-adding-data.html

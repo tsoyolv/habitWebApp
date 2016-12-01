@@ -14,12 +14,12 @@ public class ConnectionTest {
 
     @Test
     public void test() {
-        String query = "select * from books";
+        String query = "select * from user";
         Connection conn = null;
         try {
             String userName = "root";
             String password = "1234";
-            String url = "jdbc:mysql://localhost/users" + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+            String url = "jdbc:mysql://localhost/habitdb" + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection(url, userName, password);
             Statement stmt;
