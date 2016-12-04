@@ -54,4 +54,13 @@ public class Habit {
         result = 31 * result + score;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Habit{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", score=" + score +
+                '}';
+    }
 }

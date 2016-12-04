@@ -4,3 +4,7 @@
 4:Phone number or email
 5:Password
 6:Sign in
+7:score
+8:name
+9:Create
+10:Habit creation

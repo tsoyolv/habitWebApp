@@ -5,6 +5,7 @@ import com.habit.custom.server.api.model.Habit;
 import junit.framework.TestCase;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class HabitDaoTest extends TestCase {
 
@@ -18,7 +19,7 @@ public class HabitDaoTest extends TestCase {
     }
 
     private int generateScore() {
-        return 1;
+        return ThreadLocalRandom.current().nextInt(1, 100);
     }
 
     private String generateName() {
@@ -44,5 +45,6 @@ public class HabitDaoTest extends TestCase {
         Habit retrievedHabit = habitDao.get(createdHabit.getId());
         System.out.println("Hi");
         assertTrue(createdHabit.equals(retrievedHabit));
+        habitDao.delete(createdHabit.getId());
     }
 }
