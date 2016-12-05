@@ -6,7 +6,7 @@ import java.sql.SQLException;
 /**
  * OLTS on 01.12.2016.
  */
-// todo generic
+
 public interface Action<T> {
 
     T exec(Connection connection) throws SQLException;

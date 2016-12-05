@@ -8,3 +8,7 @@
 8:name
 9:Create
 10:Habit creation
+11:Login Page
+12:Hello, please log in:
+13:Please Enter Your User Name:
+14:Please Enter Your Password:
