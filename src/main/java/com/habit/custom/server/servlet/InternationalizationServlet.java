@@ -1,6 +1,8 @@
 package com.habit.custom.server.servlet;
 
+import com.habit.custom.server.WebContext;
 import com.habit.custom.server.i18n.Internationalization;
+import com.habit.custom.server.i18n.InternationalizationNew;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +23,7 @@ public class InternationalizationServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding(Internationalization.getCharsetName());
         String parameter = req.getParameter(MESSAGE_KEY);
-        String resource = Internationalization.getInstance().getResource(parameter);
+        String resource = WebContext.<InternationalizationNew>getBean("i18n").getResource(parameter); //Internationalization.getInstance().getResource(parameter);
         resp.getWriter().print(resource);
     }
 }

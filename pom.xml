@@ -11,6 +11,7 @@
   <properties>
     <plugin.tomcat.url>http://localhost:8082/manager/text</plugin.tomcat.url>
     <plugin.tomcat.server>TomcatServer</plugin.tomcat.server>
+    <org.springframework.version>4.1.7.RELEASE</org.springframework.version>
   </properties>
 
   <dependencies>
@@ -33,6 +34,29 @@
       <version>6.0.5</version>
     </dependency>
 
+    <!-- Spring START -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${org.springframework.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <version>${org.springframework.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${org.springframework.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>${org.springframework.version}</version>
+    </dependency>
+    <!-- Spring END -->
+
   </dependencies>
 
   <build>
@@ -42,9 +66,7 @@
     <testSourceDirectory>src/test</testSourceDirectory>
 
     <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-      </resource>
+      <resource><directory>src/main/resources</directory></resource>
     </resources>
 
     <plugins>
