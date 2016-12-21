@@ -1,13 +1,13 @@
 package com.habit.custom.server.database.model.habit;
 
-import com.habit.custom.server.api.dao.HabitDao;
+import com.habit.custom.server.api.dao.impl.SqlHabitDao;
 import com.habit.custom.server.api.model.Habit;
 import junit.framework.TestCase;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class HabitDaoTest extends TestCase {
+public class SqlHabitDaoTest extends TestCase {
 
     protected Habit habitTemplate;
 
@@ -40,11 +40,11 @@ public class HabitDaoTest extends TestCase {
     }
 
     public void testCreateHabit() throws Exception {
-        HabitDao habitDao = new HabitDao();
-        Habit createdHabit = habitDao.create(habitTemplate);
-        Habit retrievedHabit = habitDao.get(createdHabit.getId());
+        SqlHabitDao sqlHabitDao = new SqlHabitDao();
+        Habit createdHabit = sqlHabitDao.create(habitTemplate);
+        Habit retrievedHabit = sqlHabitDao.get(createdHabit.getId());
         System.out.println("Hi");
         assertTrue(createdHabit.equals(retrievedHabit));
-        habitDao.delete(createdHabit.getId());
+        sqlHabitDao.delete(createdHabit.getId());
     }
 }

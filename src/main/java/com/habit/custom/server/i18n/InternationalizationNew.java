@@ -22,7 +22,7 @@ public class InternationalizationNew {
     private static final String LOCALE_PATH_FILES_PATH = LOCALE_ROOT_PATH + "files/";
 
     private Locale locale;
-    private ConcurrentMap<String, String> cache = new ConcurrentHashMap<>();
+    private ConcurrentMap<Integer, String> cache = new ConcurrentHashMap<>();
 
     public void refreshResources() {
         cache.clear();
@@ -31,12 +31,13 @@ public class InternationalizationNew {
 
     public synchronized String getResource(String key) {
         if (key == null) { return "";}
-        if (cache.get(key) != null) {return cache.get(key);}
+        Integer keyI = Integer.parseInt(key);
+        if (cache.get(keyI) != null) {return cache.get(keyI);}
         if (cache.size() > CACHE_SIZE) {
             cache.clear();
         }
         String resourceFromFile = getResourceFromFile(key);
-        cache.put(key, resourceFromFile);
+        cache.put(keyI, resourceFromFile);
         return resourceFromFile;
     }
 
@@ -77,7 +78,7 @@ public class InternationalizationNew {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     String[] split = line.split(SPLITTER);
-                    cache.put(split[0], split[1]);
+                    cache.put(Integer.parseInt(split[0]), split[1]);
                 }
 
             } catch (IOException x) {
@@ -132,6 +133,10 @@ public class InternationalizationNew {
             }
         }
         return instance;
+    }
+
+    public void clearCache() {
+        cache.clear();
     }
 
     public void _devRefreshLocale() {

@@ -1,5 +1,6 @@
 package com.habit.custom.server.servlet.ex;
 
+import com.habit.custom.server.WebContext;
 import com.habit.custom.server.api.dao.HabitDao;
 import com.habit.custom.server.api.model.Habit;
 
@@ -23,7 +24,7 @@ public class HabitServlet extends HttpServlet {
         Habit habit = new Habit();
         habit.setName(email);
         habit.setScore(Integer.parseInt(pass));
-        HabitDao habitDao = new HabitDao();
+        HabitDao habitDao = WebContext.<HabitDao>getBean("habitDao");
         habit = habitDao.create(habit);
         Habit habit1 = habitDao.get(habit.getId());
         if (habit1.equals(habit)) {
