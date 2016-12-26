@@ -28,3 +28,19 @@ create model and db
 https://dev.mysql.com/doc/workbench/en/wb-getting-started-tutorial-creating-a-model.html
 insert data in db
 https://dev.mysql.com/doc/workbench/en/wb-getting-started-tutorial-adding-data.html
+get connection - database -> manage connections (or create the new one)
+maven - mysql-connector-java
+
+for jdbc templates
+<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+<bean id="jdbcCall" class="org.springframework.jdbc.core.simple.SimpleJdbcCall">
+	<constructor-arg ref="dataSource"/>
+</bean>
+jdbcCall.getJdbcTemplate()
+
+for hibernate + spring
+add maven dependencies hibernate-entitymanager and hibernate-core and spring-orm, spring-tx
+hibernate LocalSessionFactoryBean with <property name="mappingResources"> for files mappings /hibernate/Habit.hbm.xml
+in resources. <property name="dataSource"  dbcp2.BasicDataSource
+MySQLDialect
+add HibernateTransactionManager with <property name="sessionFactory" and PersistenceExceptionTranslationPostProcessor

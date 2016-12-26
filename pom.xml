@@ -11,7 +11,8 @@
   <properties>
     <plugin.tomcat.url>http://localhost:8082/manager/text</plugin.tomcat.url>
     <plugin.tomcat.server>TomcatServer</plugin.tomcat.server>
-    <org.springframework.version>4.1.7.RELEASE</org.springframework.version>
+    <org.springframework.version>4.3.5.RELEASE</org.springframework.version>
+    <org.hibernate.version>5.2.5.Final</org.hibernate.version>
   </properties>
 
   <dependencies>
@@ -88,13 +89,13 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-entitymanager</artifactId>
-      <version>5.2.5.Final</version>
+      <version>${org.hibernate.version}</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
-      <version>5.2.5.Final</version>
+      <version>${org.hibernate.version}</version>
     </dependency>
 
 

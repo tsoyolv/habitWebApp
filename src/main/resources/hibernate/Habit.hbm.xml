@@ -3,8 +3,8 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.habit.custom.server.api.model.Habit" table="stock" catalog="habit">
-        <id name="id" type="java.lang.Long">
+    <class name="com.habit.custom.server.api.model.Habit" table="habit" catalog="habitdb">
+        <id name="id" type="integer">
             <column name="idhabit" />
             <generator class="identity" />
         </id>
