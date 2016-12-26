@@ -7,5 +7,5 @@
           destroy-method="clearCache"/>
     <bean name="habitDao, habitService" class="com.habit.custom.server.api.dao.impl.SqlHabitDao"/>
     <import resource="../database/datasource.xml"/>
-    <import resource="../database/hibernate.xml"/>
+    <import resource="../database/hibernateContext.xml"/>
 </beans>
