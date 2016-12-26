@@ -1,0 +1,15 @@
+Could not obtain transaction-synchronized Session for current thread
+ans: @EnableTransactionManagement + @Transactional
+
+No qualifying bean of type PlatformTransactionManager
+ans: add <bean class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+<property name="sessionFactory" ref="sessionFactory"/></bean>
+
+NoClassDefFoundError: org/hibernate/engine/transaction/spi/TransactionContext
+ans: In your POM you are depending on Hibernate 5, but in your transaction manager, you are using Hibernate 4.
+and change dependencies of hibernate + spring orm
+
+address already in use (windows) - because katalina was ended incorrectly
+ans: netstat -ano | find "8080" and Taskkill /PID 26356 (or Taskkill /PID 26356 /F | /F means force)
+
+ No qualifying bean of type 'javax.persistence.EntityManagerFactory' available:

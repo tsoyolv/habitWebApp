@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <!-- for @Transactional -->
+       <!--<bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+              <property name="entityManagerFactory" ref="emf"/>
+       </bean>-->
+
+       <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+
+       <!-- for PersistenceAnnotationBeanPostProcessor -->
+       <bean id="emf" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+              <property name="persistenceUnitName" value="habitPU" />
+       </bean>
+
+       <!-- for PersistenceAnnotationBeanPostProcessor -->
+       <!--  <bean id="emf1" class=
+                 "org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+             <property name="dataSource" ref="dataSource" />
+             <property name="persistenceUnitName" value="habitPU"/>
+             <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+         </bean>-->
+       <bean id="jpaVendorAdapter"
+             class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"> <!-- for LocalContainerEntityManagerFactoryBean -->
+              <property name="database" value="MYSQL" />
+              <property name="showSql" value="true"/>
+              <property name="generateDdl" value="false"/>
+              <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect"/>
+       </bean>
+</beans>

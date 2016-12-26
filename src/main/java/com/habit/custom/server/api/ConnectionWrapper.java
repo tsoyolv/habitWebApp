@@ -47,6 +47,6 @@ public class ConnectionWrapper {
     }
 
     private static String getUrlConnection() {
-        return "jdbc:mysql://localhost/habitdb" + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        return "jdbc:mysql://localhost:3306/habitdb" + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     }
 }

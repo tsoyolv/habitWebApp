@@ -26,13 +26,14 @@ public class JdbcTempCheckServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String selectQuery = "SELECT `name`, score FROM `habitdb`.`habit`";
+        String selectQuery = "SELECT * FROM `habitdb`.`habit`";
         AbstractJdbcCall jdbcCall = WebContext.<AbstractJdbcCall>getBean("jdbcCall");
         List<Map<String, Object>> queryForList = jdbcCall.getJdbcTemplate().queryForList(selectQuery);
         for (Map row : queryForList) {
             Habit habit = new Habit();
             habit.setName((String) (row.get("name")));
             habit.setScore((Integer) row.get("score"));
+            habit.setId(Integer.parseInt(row.get("idhabit").toString()));
             resp.getWriter().println(habit);
         }
         //oldCheck(resp);

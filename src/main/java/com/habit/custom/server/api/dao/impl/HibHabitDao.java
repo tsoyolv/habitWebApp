@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository("hibHabDao")
 @EnableTransactionManagement
-@Transactional
+@Transactional//(transactionManager = "hibernateTransactionManager")
 public class HibHabitDao implements HabitDao {
 
     @Autowired

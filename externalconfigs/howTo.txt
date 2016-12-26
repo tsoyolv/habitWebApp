@@ -44,3 +44,13 @@ hibernate LocalSessionFactoryBean with <property name="mappingResources"> for fi
 in resources. <property name="dataSource"  dbcp2.BasicDataSource
 MySQLDialect
 add HibernateTransactionManager with <property name="sessionFactory" and PersistenceExceptionTranslationPostProcessor
+
+for jpa + spring
+create pojo with annotations: javax.persistence.Entity, @Table, @Id, @Column etc
+add persistence.xml to resources/META-INF and configure it
+add EntityManager with annotation @PersistenceContext +
+<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+add  <bean id="emf" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+<property name="persistenceUnitName" value="habitPU" /> </bean>
+entityManager.find(Habit.class, id)
+be carefull with persistence config - because it affects db
