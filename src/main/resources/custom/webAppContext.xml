@@ -9,4 +9,5 @@
     <import resource="../database/datasource.xml"/>
     <import resource="../database/hibernateContext.xml"/>
     <import resource="../database/jpaContext.xml"/>
+    <import resource="../custom/cache/habitCacheContext.xml"/>
 </beans>

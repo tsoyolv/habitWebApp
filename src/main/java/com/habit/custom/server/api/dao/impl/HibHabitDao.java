@@ -24,6 +24,7 @@ public class HibHabitDao implements HabitDao {
 
     @Override
     // @Transactional   also for methods
+    //@Cacheable(value = "habitFindCache",key="#idhabit")
     public Habit get(int habitId) {
         return getCurrentSession().get(Habit.class, habitId);
     }

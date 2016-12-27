@@ -13,3 +13,15 @@ address already in use (windows) - because katalina was ended incorrectly
 ans: netstat -ano | find "8080" and Taskkill /PID 26356 (or Taskkill /PID 26356 /F | /F means force)
 
  No qualifying bean of type 'javax.persistence.EntityManagerFactory' available:
+
+CacheException: Another unnamed CacheManager already exists in the same VM.
+ans: add  <property name="shared" value="true"/> to <bean id="ehcache">
+
+The matching wildcard is strict, but no declaration can be found for element
+ans: that means that you have added xmlns but not added url xsi:schemaLocation
+
+ClassNotFoundException: org.aspectj.weaver.reflect.ReflectionWorld$ReflectionWorldException
+ans: add
+
+java.lang.NoClassDefFoundError: net/sf/ehcache/CacheManager
+ans: add ehcache to maven dependencies
