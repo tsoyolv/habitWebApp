@@ -22,11 +22,27 @@ public class NativeJdbcSerlvet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String habitId = req.getParameter("habit_id");
         HabitDao habitDao = WebContext.<HabitDao>getBean("habitDao");
-        resp.getWriter().println(habitDao.get(Integer.parseInt(habitId)));
         CacheManager cacheManager = WebContext.<CacheManager>getBean("cacheManager");
+        beforeGet(resp, habitId, cacheManager);
+        resp.getWriter().println(habitDao.get(Integer.parseInt(habitId)));
+        afterGet(resp, habitId, cacheManager);
+    }
+
+    private void beforeGet(HttpServletResponse resp, String habitId, CacheManager cacheManager) throws IOException {
+        try {
+            resp.getWriter().println("Cache start.\n");
+            Cache habitFindCache = cacheManager.getCache("habitFindCache");
+            Cache.ValueWrapper valueWrapper = habitFindCache.get(Integer.parseInt(habitId));
+            resp.getWriter().println("before obj: " + valueWrapper.get());
+        } catch (Exception e) {
+            resp.getWriter().println("Cache exception in before");
+        }
+    }
+
+    private void afterGet(HttpServletResponse resp, String habitId, CacheManager cacheManager) throws IOException {
         Cache habitFindCache = cacheManager.getCache("habitFindCache");
         resp.getWriter().println(habitFindCache.getClass());
-        Cache.ValueWrapper valueWrapper = habitFindCache.get(39);
-        valueWrapper.get();
+        Cache.ValueWrapper valueWrapper = habitFindCache.get(Integer.parseInt(habitId));
+        resp.getWriter().println("Cache end.\nCache is working: " + valueWrapper.get());
     }
 }

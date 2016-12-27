@@ -26,11 +26,11 @@
     <cache:advice id="cacheAdvice" cache-manager="cacheManager">
         <cache:caching cache="habitFindCache">
             <cache:cacheable method="get" key="#habitId"/>
-            <cache:cache-evict method="create" all-entries="true"/>
+            <cache:cache-evict method="create" all-entries="true"/> <!-- flush context -->
         </cache:caching>
     </cache:advice>
 
-    <!-- apply the cacheable behavior to all BookService interfaces -->
+    <!-- apply the cacheable behavior to SqlHabitDao -->
     <aop:config>
         <aop:advisor advice-ref="cacheAdvice" pointcut="execution(* com.habit.custom.server.api.dao.impl.SqlHabitDao.*(..))"/>
     </aop:config>
