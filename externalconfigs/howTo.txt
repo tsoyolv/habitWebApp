@@ -54,3 +54,15 @@ add  <bean id="emf" class="org.springframework.orm.jpa.LocalEntityManagerFactory
 <property name="persistenceUnitName" value="habitPU" /> </bean>
 entityManager.find(Habit.class, id)
 be carefull with persistence config - because it affects db
+
+for caching (ehcache)
+add spring-context-support, spring-aspects, ehcache maven dependencies
+add ehcache.xml resource
+add xmlns:cache xmlns:aop to spring conf
+add EhCacheCacheManager, EhCacheManagerFactoryBean, <cache:advice>, <aop:advisor advice-ref="cacheAdvice" spring
+https://docs.spring.io/spring/docs/current/spring-framework-reference/html/cache.html
+https://www.mkyong.com/spring/spring-caching-and-ehcache-example/
+
+for transaction management
+1 for xml. add xmlns:aop, xmlns:tx, add transactionManager bean, <tx:advice> and  <aop:advisor... advice-ref="txAdvice"
+2 for annotation. add transactionManager bean, @EnableTransactionManagement and  @Transactional on method/class

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -15,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository("hibHabDao")
 @EnableTransactionManagement
-@Transactional//(transactionManager = "hibernateTransactionManager")
 public class HibHabitDao implements HabitDao {
 
     @Autowired
@@ -23,7 +23,7 @@ public class HibHabitDao implements HabitDao {
     private SessionFactory sessionFactory;
 
     @Override
-    // @Transactional   also for methods
+    @Transactional(transactionManager = "hibernateTransactionManager", propagation = Propagation.REQUIRES_NEW, readOnly = true)
     //@Cacheable(value = "habitFindCache",key="#idhabit")
     public Habit get(int habitId) {
         return getCurrentSession().get(Habit.class, habitId);
