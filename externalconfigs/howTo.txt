@@ -66,3 +66,9 @@ https://www.mkyong.com/spring/spring-caching-and-ehcache-example/
 for transaction management
 1 for xml. add xmlns:aop, xmlns:tx, add transactionManager bean, <tx:advice> and  <aop:advisor... advice-ref="txAdvice"
 2 for annotation. add transactionManager bean, @EnableTransactionManagement and  @Transactional on method/class
+
+for spring mvc
+add spring-webmvc to maven dependencies, DispatcherServlet to web.xml, <servlet-name>-servlet.xml to resources
+
+http://www.mkyong.com/spring3/spring-3-mvc-hello-world-example-annotation/
+http://www.codingpedia.org/ama/spring-mvc-and-apache-tiles-integration-example/

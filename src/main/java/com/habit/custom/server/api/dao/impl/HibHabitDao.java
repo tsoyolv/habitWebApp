@@ -30,6 +30,7 @@ public class HibHabitDao implements HabitDao {
     }
 
     @Override
+    @Transactional(transactionManager = "hibernateTransactionManager", propagation = Propagation.REQUIRES_NEW)
     public Habit create(Habit templateHabit) {
         return (Habit) getCurrentSession().save(templateHabit);
     }

@@ -1,6 +1,6 @@
 <!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -14,39 +14,50 @@
         <servlet-class>com.habit.custom.server.servlet.InternationalizationServlet</servlet-class>
     </servlet>
 
+    <servlet><!-- affects styles/common.css -->
+        <servlet-name>springDispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>springDispatcherServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>I19nServlet</servlet-name>
         <url-pattern>/getLocalizedMessage</url-pattern>
     </servlet-mapping>
 
-   <!-- <servlet>
-        <display-name>index</display-name>
-        <servlet-name>index</servlet-name>
-        <jsp-file>/index.jsp</jsp-file>
-    </servlet>
-    <security-constraint>
-        <display-name>SecurityConstraint</display-name>
-        <web-resource-collection>
-            <web-resource-name>WRCollection</web-resource-name>
-            <url-pattern>/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>TutorialUser</role-name>
-        </auth-constraint>
-        <user-data-constraint>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
-    </security-constraint>
-    <login-config>
-        <auth-method>FORM</auth-method>
-        <form-login-config>
-            <form-login-page>/login.jsp</form-login-page>
-            <form-error-page>/loginerror.jsp</form-error-page>
-        </form-login-config>
-    </login-config>
-    <security-role>
-        <role-name>TutorialUser</role-name>
-    </security-role>-->
+    <!-- <servlet>
+         <display-name>index</display-name>
+         <servlet-name>index</servlet-name>
+         <jsp-file>/index.jsp</jsp-file>
+     </servlet>
+     <security-constraint>
+         <display-name>SecurityConstraint</display-name>
+         <web-resource-collection>
+             <web-resource-name>WRCollection</web-resource-name>
+             <url-pattern>/*</url-pattern>
+         </web-resource-collection>
+         <auth-constraint>
+             <role-name>TutorialUser</role-name>
+         </auth-constraint>
+         <user-data-constraint>
+             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+         </user-data-constraint>
+     </security-constraint>
+     <login-config>
+         <auth-method>FORM</auth-method>
+         <form-login-config>
+             <form-login-page>/login.jsp</form-login-page>
+             <form-error-page>/loginerror.jsp</form-error-page>
+         </form-login-config>
+     </login-config>
+     <security-role>
+         <role-name>TutorialUser</role-name>
+     </security-role>-->
 
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
