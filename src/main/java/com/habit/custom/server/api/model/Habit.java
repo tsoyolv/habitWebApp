@@ -1,11 +1,14 @@
 package com.habit.custom.server.api.model;
 
+import javax.validation.constraints.Size;
+
 /**
  * OLTS on 01.12.2016.
  */
 public class Habit {
 
     private int id;
+    @Size(min=3, max=50, message="Your name must be between 3 and 50 characters long.")
     private String name;
     private int score;
 

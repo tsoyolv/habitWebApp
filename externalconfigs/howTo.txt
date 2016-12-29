@@ -68,7 +68,15 @@ for transaction management
 2 for annotation. add transactionManager bean, @EnableTransactionManagement and  @Transactional on method/class
 
 for spring mvc
+model is a POJO, controller and view - jsp
 add spring-webmvc to maven dependencies, DispatcherServlet to web.xml, <servlet-name>-servlet.xml to resources
-
+add servlet mapping to <url-pattern>/</url-pattern> and add InternalResourceViewResolver with preffix and suffix
+add controller (@Controller) and @RequestMapping, method's return parameter is name of view
+for using tiles
+add tiles-extras to dependencies, TilesViewResolver, TilesConfigurer and views.xml resource with <tiles-definitions>
+for validation api
+add hibernate-validator to maven (maybe javax api, but it has not validate with BindingResult)
+add @Valid to POJO in Controller
 http://www.mkyong.com/spring3/spring-3-mvc-hello-world-example-annotation/
 http://www.codingpedia.org/ama/spring-mvc-and-apache-tiles-integration-example/
+!!!! <td><spring_form:errors path="name" cssClass="error" /></td> not working!
