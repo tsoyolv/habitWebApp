@@ -24,6 +24,7 @@
         <property name="location" value="/WEB-INF/views/spring-excel-views.xml"/>
         <property name="order" value="0"/>
     </bean>
+    <import resource="flows/flow-def.xml"/>
     <!--<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"/>
     <bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
         <property name="definitions">

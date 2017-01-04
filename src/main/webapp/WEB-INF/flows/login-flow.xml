@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+      <var name="user" class="com.habit.flow.model.User" />
+
+      <view-state id="displayLoginView" view="/WEB-INF/views/login.jsp" model="user">
+            <transition on="performLogin" to="performLoginAction" />
+      </view-state>
+
+      <action-state id="performLoginAction">
+            <evaluate expression="userService.validateUser(user)" />
+
+            <transition on="true" to="displaySuccess" />
+            <transition on="false" to="displayError" />
+
+      </action-state>
+
+      <view-state id="displaySuccess" view="/WEB-INF/views/success.jsp" model="user"/>
+
+      <view-state id="displayError" view="/WEB-INF/views/failure.jsp" />
+</flow>

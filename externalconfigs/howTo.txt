@@ -95,3 +95,9 @@ create class extends AbstractXlsView and register it in spring
 register XmlViewResolver (for several resolvers - set order property)
 return bean name (AbstractXlsView) in spring controller
 https://www.mkyong.com/spring-mvc/spring-mvc-export-data-to-excel-file-via-abstractexcelview/
+
+for spring web flow
+add spring web flow to maven
+add 2 beans to spring context: FlowHandlerMapping and FlowHandlerAdapter (with properties)
+add <flow> def with states, models, vars and views
+https://examples.javacodegeeks.com/enterprise-java/spring/web-flow/spring-web-flow-tutorial/
