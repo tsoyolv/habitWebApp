@@ -88,3 +88,10 @@ add commons-io and commons-fileupload to maven
 2 add method of the controller support receiving the discharged file;
 3 Configure Spring forms of analysis mechanism, consisting of several parts.
 *Saving files in Amazon S3 storage
+
+for excel file
+add apache poi to maven
+create class extends AbstractXlsView and register it in spring
+register XmlViewResolver (for several resolvers - set order property)
+return bean name (AbstractXlsView) in spring controller
+https://www.mkyong.com/spring-mvc/spring-mvc-export-data-to-excel-file-via-abstractexcelview/

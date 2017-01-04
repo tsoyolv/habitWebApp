@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * OLTS on 28.12.2016.
@@ -65,6 +66,16 @@ public class HabitController {
             return "error";
         }
         return "home";
+    }
+
+    @RequestMapping(value = "/showHabits", method = RequestMethod.GET)
+    public String showHabit(ModelMap model) {
+        Habit h = new Habit();
+        h.setId(222);
+        h.setScore(232);
+        h.setName("LALA");
+        model.addAttribute("habit", new ArrayList<Habit>(){{add(h);}});
+        return "habitview";
     }
 
     private void validateImage(MultipartFile image) {
