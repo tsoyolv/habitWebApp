@@ -12,7 +12,7 @@ public class UserService {
     public String validateUser(User user) {
         String userName = user.getName();
         String password = user.getPassword();
-        if (userName != null && password != null && userName.equals("admin") && password.equals("1")) {
+        if (userName != null && password != null && userName.equals("Oleg") && password.equals("1")) {
             return "true";
         } else {
             return "false";

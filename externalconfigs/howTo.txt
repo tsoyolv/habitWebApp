@@ -101,3 +101,12 @@ add spring web flow to maven
 add 2 beans to spring context: FlowHandlerMapping and FlowHandlerAdapter (with properties)
 add <flow> def with states, models, vars and views
 https://examples.javacodegeeks.com/enterprise-java/spring/web-flow/spring-web-flow-tutorial/
+
+for security
+simple security
+add spring-security-web and spring-security-config to maven
+add DelegatingFilterProxy with filterMapping on url /*
+add security context to spring, add <authentication-manager>, <http> and <intercept-url> to some url
+add controller for that url
+http://www.mkyong.com/spring-security/spring-security-hello-world-example/
+http://websystique.com/spring-security/spring-security-4-logout-example/

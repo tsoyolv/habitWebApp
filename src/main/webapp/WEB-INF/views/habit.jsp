@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<h2>Student Information</h2>
+<h2>Habit Information</h2>
 <spring_form:form method="POST" action="mvcAddHabit" commandName="createHabit">
   <spring_form:errors path="*" cssClass="errorblock" element="div" />
   <table>
